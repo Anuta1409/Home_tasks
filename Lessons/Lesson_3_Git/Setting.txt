@@ -36,3 +36,4 @@
 8. git commit -m "message"
 9. git pull server_repository_name master// забрать все данные с удаленного репозитория
 10. git push server_repository_name master// положить все данные на удаленный сервак!!!
+11. git remote rm repository_name //удаление удаленного репозитория
