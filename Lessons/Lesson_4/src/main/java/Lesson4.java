@@ -29,6 +29,18 @@ public class Lesson4 {
             System.out.println((double)(((int)(k/10))) / (double)Math.pow(10.0,z));
         }
 
+        int h = 3;
+        int v = 5;
+
+        System.out.println("v="+v+"   h="+h);
+
+        h=v-h;
+        v=v-h;
+        h=h+v;
+
+        System.out.println("vr="+v+"   hr="+h);
+
+
 
 
 
