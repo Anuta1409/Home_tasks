@@ -1,9 +1,12 @@
+import java.io.ByteArrayInputStream;
+import java.util.Base64;
+
 /**
  * Created by Anna on 03.11.2015.
  */
 public class Task1 {
     public static void main (String[] args){
-
+        System.out.println("------ Task - 1 -------");
         byte x = -128;
 
         System.out.println(x + " = byte x");
@@ -25,9 +28,20 @@ public class Task1 {
         System.out.println("------ Task - 2 -------");
 
         Task2 replace = new Task2();
-        replace.repl(5,9);
+        replace.repl(15,9);
 
+        System.out.println("------ Task - 3 -------");
+        Task3 devision = new Task3();
+        devision.dev(85,9);//ћетод с использованием %
 
+        devision.dev2(85, 9);
+
+        System.out.println("------ Task - 4 -------");
+        byte b = 127;
+        byte ba = (byte) 129;//явное приведение типов
+
+        System.out.println("Explicit type"+(byte)(b+2)+ "   "+ ba);
+        System.out.println(b+2 + " - Implicit type");
 
     }
 }
