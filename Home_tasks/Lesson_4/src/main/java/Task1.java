@@ -41,7 +41,23 @@ public class Task1 {
         byte ba = (byte) 129;//явное приведение типов
 
         System.out.println("Explicit type"+(byte)(b+2)+ "   "+ ba);
-        System.out.println(b+2 + " - Implicit type");
+        System.out.println(b+2 + " - Implicit type");//Ќе€вное приведение типов
+
+
+        long t = Long.MAX_VALUE;
+        t = t + 2;
+        System.out.println(t);
+
+        long t1 = Long.MIN_VALUE;
+        t1 = t1 - 2;
+        System.out.println(t1);
+
+        char ch = Character.MAX_VALUE;
+        System.out.println(ch+78);
+        System.out.println((char)(ch+78));
+
+
+
 
     }
 }
