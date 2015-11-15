@@ -9,7 +9,7 @@ public class RaggedArray {
         int[][] mas = new int[10][];
 
         for(int i=0; i < mas.length; i++){
-            mas[i] = new int[mas.length-i];
+            mas[i] = new int[i+1];
         }
 
         for(int i = 0; i < mas.length; i++){
