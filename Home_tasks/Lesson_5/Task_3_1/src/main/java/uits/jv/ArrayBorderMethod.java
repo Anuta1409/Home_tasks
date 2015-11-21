@@ -11,7 +11,7 @@ public class ArrayBorderMethod {
 
     for (int i = 0; i < newArr.length; i++) {
 
-        if (i < newArr.length) {
+        if (i < arr.length) {
             newArr[i] = arr[i];
         } else {
             newArr[i] = value;
