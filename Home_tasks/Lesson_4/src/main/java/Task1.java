@@ -32,7 +32,7 @@ public class Task1 {
 
         System.out.println("------ Task - 3 -------");
         Task3 devision = new Task3();
-        devision.dev(85,9);//Метод с использованием %
+        devision.dev(85,5);//Метод с использованием %
 
         devision.dev2(85, 9);
 

@@ -1,30 +1,31 @@
 package uits.jv;
 
 /**
- * Created by Anna on 11.11.2015.
+ * Created by Anna on 29.11.2015.
  */
 public class BubbleSort {
 
-        public static void main(String[] args){
+    private int[] arr;//создаем поле массива
 
-            int [] mas = new int[10];
-            for (int i = 0; i < mas.length; i++){
-                mas[i] = (int) Math.round(Math.random()*100);
-                System.out.print(mas[i]+" ");
-            }
+    public BubbleSort(int[] arr) {//Передаем это значение по параметрам конструктора
+        this.arr = arr;
+    }
 
-            System.out.println();
-
-            for (int i = 0; i < mas.length; i++){
-                for (int j = 0; j < mas.length-i-1; j++){
-                    if (mas[j] > mas[j+1]){
-                        int tmp = mas[j];
-                        mas[j] = mas[j+1];
-                        mas[j+1] = tmp;
-                    }
-                }
-            }
-            for (int i = 0; i < mas.length; i++) System.out.print(mas[i]+" ");
+    public static void swap(int[] arr,int index) {
+            if (arr[index] > arr[index+1]) {
+            int tmp = arr[index];
+            arr[index] = arr[index + 1];
+            arr[index + 1] = tmp;
         }
     }
 
+    public int[] bubbleSort() {
+        int[] resMas = arr;
+        for (int i = 0; i < resMas.length; i++){
+             for (int j = 0; j < resMas.length-i-1; j++){
+                 swap(resMas,j);
+             }
+        }
+        return resMas;
+    }
+}
