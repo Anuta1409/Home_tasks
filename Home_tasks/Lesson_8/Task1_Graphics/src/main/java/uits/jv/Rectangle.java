@@ -1,4 +1,15 @@
 package uits.jv;
+//цикл по горизонтали
+//для каждой точки на отрезке
+//создаем новую точку для верхнего и нижнего отрезка
+//координаты вержнего (tL.x + xOffset, tl.y)
+//координаты нижнего  (tL.x + xOffset, bR.y)
+////////////////////////////////////////////////////////////////////////
+//цикл по вертикали
+//для каждой точки на отрезке
+//создаем новую точку для левого и правого отрезка
+//координаты левый (tL.x , tl.y + offset)
+//координаты правый(bR.x, tl.y + offset)
 
 public class Rectangle extends Shape{
 
@@ -14,13 +25,16 @@ public class Rectangle extends Shape{
 
     @Override
     public void draw() {
+        int horizontalLineLenght = Math.abs(point1.getX()- point2.getX());
+        int verticalLineLenght = Math.abs(point1.getY()- point2.getY());
+        Point[] points = new Point[2*horizontalLineLenght+2*verticalLineLenght];//Определили размер массива точек
 
         //++++++++++++++++++++++++++++FIND X++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        int horizontalLineLenght = Math.abs(point1.getX()- point2.getX());
+
         int[] x = new int[horizontalLineLenght];
 
-        for (int i=0;i < horizontalLineLenght;i++){
+        for (int i=0;i < horizontalLineLenght;i++){ //проверка на расположение точек в плоскости
             if(point1.getX()>point2.getX()) {
                 x[i]= point1.getX() - i;
             }else if(point1.getX()<point2.getX()){
@@ -35,16 +49,13 @@ public class Rectangle extends Shape{
             Point pointsRectLine2 = new Point(xOffset,yOffsetB);
 
 
-            Point[] pointsR = new Point[2*horizontalLineLenght];
-            pointsR[i] = pointsRectLine1;
-            //pointsR[i] = pointsRectLine2;
-            System.out.println(pointsR[i]);
+
+            points[i] = pointsRectLine1;
+            points[i+horizontalLineLenght] = pointsRectLine2;
         }
-        System.out.println(point1.getX()+" "+point2.getX()+" "+horizontalLineLenght);
 
        //+++++++++++++++++++++++++++++++FIND Y+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        int verticalLineLenght = Math.abs(point1.getY()- point2.getY());
         int[] y = new int[verticalLineLenght];
 
         for (int i=0;i < verticalLineLenght;i++){
@@ -62,12 +73,14 @@ public class Rectangle extends Shape{
             Point pointsRectLine2 = new Point(xOffsetLine2,yOffset);
 
 
-            Point[] pointsR = new Point[2*verticalLineLenght];
-            //pointsR[i] = pointsRectLine1;
-            pointsR[i] = pointsRectLine2;
-            System.out.println(pointsR[i]);
+            points[2*horizontalLineLenght+i] = pointsRectLine1;
+            points[2*horizontalLineLenght+verticalLineLenght+i] = pointsRectLine2;
+
         }
-        System.out.println(point1.getY()+" "+point2.getY()+" "+verticalLineLenght);
+
+        for(int i = 0; i < points.length; i++){
+            System.out.println(points[i]);
+        }
 
 
     }

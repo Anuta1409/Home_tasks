@@ -1,14 +1,25 @@
 package uits.jv;
 
-import javax.swing.table.TableCellEditor;
+import java.net.SocketPermission;
 
 /**
- * Created by Anna on 25.11.2015.
+ *SQL requests methods realization:
+ *
  */
+
 public class SqlRequest implements Cloneable {
 
-    // String selectQuery = "SELECT Column_name" +
-   // "FROM table_name" + "WHERE value = ";
+    //Block with main SQL operators
+
+    static final String EQUALS = " = ";
+    static final String NOT_EQUALS = " ! = ";
+    static final String GREATHER_THAN = " > ";
+    static final String GREATHER_OR_EQUAL = " >= ";
+    static final String LESS_THAN = " < ";
+    static final String LESS_OR_EGUAL = " =< ";
+    static final String BETWEEN = " BETWEEN ";
+
+
     private StringBuffer request = new StringBuffer();
 
     public SqlRequest(){}
@@ -26,92 +37,120 @@ public class SqlRequest implements Cloneable {
           return this;
       }
 
-    public SqlRequest where(String fieldsName1){
-        request.append("WHERE").append("  ").append(fieldsName1).append("  ");
+    public SqlRequest where(String colomnName, String op, String value){
+        request.append("WHERE").append(" ")
+                .append(colomnName).append(" ")
+                .append(op).append(" ")
+                .append("'").append(value).append("'");
         return this;
     }
 
-
-
-    public SqlRequest and(String fieldsName2) {
-        request.append("AND").append("  ").append(fieldsName2).append("  ");
+    public SqlRequest where(String colomnName, String op, int value){//methods overload
+        request.append("WHERE").append(" ")
+                .append(colomnName).append(" ")
+                .append(op).append(" ")
+                .append(value).append(" ");
         return this;
     }
 
-    public SqlRequest or(String fieldsName2){
-        request.append("OR").append("  ").append(fieldsName2).append("  ");
+    public SqlRequest and(String colomnName,String op,String value) {
+        request.append("AND").append(" ")
+                .append(colomnName).append(" ")
+                .append(op).append(" ")
+                .append("'").append(value).append("'");
         return this;
     }
 
-    public SqlRequest equal(String value){
-        request.append("=").append("  ").append(value).append("  ");
-        return this;
-    }//Можно перегрузку метода сделать???
-
-    public SqlRequest equal(double value){
-        request.append("=").append("  ").append(value);
+    public SqlRequest and(String colomnName,String op,int value) {
+        request.append("AND").append(" ")
+                .append(colomnName).append(" ")
+                .append(op).append(" ")
+                .append(value).append(" ");
         return this;
     }
 
-
-//    String insertQuery = "INSERT into Table_name" + "(column_name1,column_name2)" +
-//            "VALUES" + "(value1, value2, value3)";
-
-    public SqlRequest insert(String tableName){
-        request.append("INSERT INTO").append("  ").append(tableName).append(" ");
+    public SqlRequest or(String colomnName,String op,String value) {
+        request.append("OR").append(" ")
+                .append(colomnName).append(" ")
+                .append(op).append(" ")
+                .append("'").append(value).append("'");
         return this;
     }
 
-    public SqlRequest colName(String colName){
-        request.append(colName).append("  ");
+    public SqlRequest or(String colomnName,String op,int value) {
+        request.append("OR").append(" ")
+                .append(colomnName).append(" ")
+                .append(op).append(" ")
+                .append(value).append(" ");
         return this;
     }
 
-    public SqlRequest value(){
-        request.append("VALUE").append(" ");
+    public SqlRequest insert(String tableName, String[] values){
+        request.append("INSERT INTO").append(" ")
+                .append(tableName).append(" ").append("VALUES")
+                .append(" ").append("( ");
+        for (int i = 0; i < values.length; i++){
+            request.append(values[i]);
+            if (i == values.length-1){
+                request.append(" )");
+            }else{
+                request.append(",").append(" ");
+            }
+        }
         return this;
     }
 
-
-    public SqlRequest valueStr(String value){
-        request.append(" ").append(value);
+    public SqlRequest insert(String tableName, String[] colomnName, String[] values) {
+        if (colomnName.length == values.length) {
+            request.append("INSERT INTO").append(" ").append(tableName).append(" ")
+                    .append("(").append(" ");
+            for (int i = 0; i < colomnName.length; i++) {
+                request.append(colomnName[i]);
+                if (i == colomnName.length - 1) {
+                    request.append(" ").append(")").append(" ");
+                } else {
+                    request.append(", ");
+                }
+            }
+            request.append("VALUES").append(" ").append("( ");
+            for (int i = 0; i < values.length; i++) {
+                request.append(values[i]);
+                if (i == values.length - 1) {
+                    request.append(" ").append(" )");
+                } else {
+                    request.append(", ");
+                }
+            }
+        } else {
+            System.out.println("ERROR. Number of columns isn't equal number of values");
+        }
         return this;
     }
 
-    public SqlRequest valueDoub(double value){
-        request.append(" ").append(value);
+    public SqlRequest update(String tableName, String[] colomnName,String op, String[] value){
+        request.append("UPDATE").append(" ")
+                .append(tableName).append(" ")
+                .append("SET").append(" ");
+        for (int i = 0; i < colomnName.length; i++){
+            request.append(colomnName[i]).append(" ")
+                    .append(op).append(" ").append(value[i]);
+            if (i == colomnName.length-1) {
+                request.append(" ");
+            }else{
+                request.append(",").append(" ");
+            }
+        }
         return this;
     }
 
-    public SqlRequest update(String tableName){
-        request.append("UPDATE").append(" ").append(tableName).append(" ");
-        return this;
+    //Клонирование обьекта класса
+    @Override
+    public Object clone() {
+        SqlRequest t = new SqlRequest(this.request);
+        return t;
     }
 
-    public SqlRequest updateSet(){
-        request.append("SET").append("  ");
-        return this;
-    }
-
-    public SqlRequest colVal(String colName){
-        request.append(colName).append(" ");
-        return this;
-    }
-
-
-    String updateQuery = "UPDATE table_name" +
-            "SET" + "column1= value1" +
-            "WHERE" + "Some_column = some_value";
-
-@Override
-public Object clone(){
- SqlRequest t = new SqlRequest(this.request);
-    return t;
-}
-
-
-
-    public String getQueryString(){
+   public String getQueryString(){
         return request.toString();
     }
 
