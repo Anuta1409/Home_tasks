@@ -32,15 +32,15 @@ public class Task1 {
 
         System.out.println("------ Task - 3 -------");
         Task3 devision = new Task3();
-        devision.dev(85,5);//Метод с использованием %
+        devision.dev2(15,2);//Метод с использованием %
 
-        devision.dev2(85, 9);
+
 
         System.out.println("------ Task - 4 -------");
         byte b = 127;
         byte ba = (byte) 129;//Явное приведение типов
 
-        System.out.println("Explicit type"+(byte)(b+2)+ "   "+ ba);
+        System.out.println((byte)(b+2)+ "   "+ ba);
         System.out.println(b+2 + " - Implicit type");//Неявное приведение типов
 
 
