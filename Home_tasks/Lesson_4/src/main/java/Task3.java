@@ -11,7 +11,7 @@ public class Task3 {
             System.out.println("z=" + z);
         }
         else{
-            System.out.println("z=" + z);
+            System.out.println("z_else=" + z);
         }
 
     }
