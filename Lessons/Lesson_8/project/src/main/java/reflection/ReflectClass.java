@@ -9,9 +9,8 @@ import java.lang.reflect.Modifier;
  * Created by Anna on 06.12.2015.
  */
 public class ReflectClass {
-    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException {//почему исключение обязательно???
-        //почему в этом классе недбзя обьявлять переменные???
-     Class c = Class.forName("reflection.Test");//надо просто пакет+имя файла!!!
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException {
+     Class c = Class.forName("reflection.Test");//РЅР°РґРѕ РїСЂРѕСЃС‚Рѕ РїР°РєРµС‚+РёРјСЏ С„Р°Р№Р»Р°!!!
        String className =  c.getName();
         System.out.println("className - " + className);
 
@@ -38,11 +37,11 @@ public class ReflectClass {
             System.out.println(inter[i]);
         }
 
-        Method[] meth = c.getMethods();//если метод приватный или протектед то мы их не увидим!!!
+        Method[] meth = c.getMethods();//РµСЃР»Рё РјРµС‚РѕРґ РїСЂРёРІР°С‚РЅС‹Р№ РёР»Рё РїСЂРѕС‚РµРєС‚РµРґ С‚Рѕ РјС‹ РёС… РЅРµ СѓРІРёРґРёРј!!!
         for(int i = 0;i < meth.length; i++){
             System.out.println(meth[i]);
         }
-        System.out.println(meth[0].getTypeParameters());//почему вывелся адресс ячейки памяти???
+        System.out.println(meth[0].getTypeParameters());
 
         Field[] field = c.getFields();
         for(int i = 0;i < field.length; i++){
@@ -50,7 +49,8 @@ public class ReflectClass {
 
         }
         System.out.println(field[0].getType());
-        System.out.println(field[0].getModifiers());//Что это за единица? откуда???
+        System.out.println(field[0].getModifiers());//РµРґРёРЅРёС†Р° РїРѕС‚РѕРјСѓ С‡С‚Рѕ РјРѕРґРёС„РёРєР°С‚РѕСЂС‹ Сѓ РЅР°СЃ РёРЅС‚РµРґР¶РµСЂС‹ Рё РєР°Р¶РґС‹Р№ РёРјРµРµС‚ СЃРІРѕРµ Р·РЅР°С‡РµРЅРёРµ
+
 
     }
 }
