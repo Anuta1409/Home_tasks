@@ -11,7 +11,7 @@ public class Collection {
 
     public class Forward implements Iterator {
         private int cur = 0;
-        public boolean hasNest() {//встроенный класс
+        public boolean hasNest() {//ГўГ±ГІГ°Г®ГҐГ­Г­Г»Г© ГЄГ«Г Г±Г±
             return cur < arr.length - 1;
         }
         public Object next() {
@@ -32,14 +32,14 @@ public class Collection {
 
 
     public Iterator createForward(){
-        return  new Forward();//метод,который возвращает обьект внутренних классов
+        return  new Forward();//Г¬ГҐГІГ®Г¤,ГЄГ®ГІГ®Г°Г»Г© ГўГ®Г§ГўГ°Г Г№Г ГҐГІ Г®ГЎГјГҐГЄГІ ГўГ­ГіГІГ°ГҐГ­Г­ГЁГµ ГЄГ«Г Г±Г±Г®Гў
     }
     public Iterator createBackward(){
-        return  new Backward();//метод,который возвращает обьект внутренних классов
+        return  new Backward();//Г¬ГҐГІГ®Г¤,ГЄГ®ГІГ®Г°Г»Г© ГўГ®Г§ГўГ°Г Г№Г ГҐГІ Г®ГЎГјГҐГЄГІ ГўГ­ГіГІГ°ГҐГ­Г­ГЁГµ ГЄГ«Г Г±Г±Г®Гў
     }
 
     public Iterator createIterator(){
-        return new Iterator() {//анонимный класс, реализующий интерфейс
+        return new Iterator() {//Г Г­Г®Г­ГЁГ¬Г­Г»Г© ГЄГ«Г Г±Г±, Г°ГҐГ Г«ГЁГ§ГіГѕГ№ГЁГ© ГЁГ­ГІГҐГ°ГґГҐГ©Г±
             private int cur = -1;
             public boolean hasNest() {
                 return cur > arr.length-2;
