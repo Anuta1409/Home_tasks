@@ -87,9 +87,59 @@ public class GenericClass {
 
         System.out.println("   ");
 
-        while (que.size() > 0){
-            System.out.println(que.poll());// не выводится элемент с индексом 0??????????
+        for (Integer g:que)System.out.println(g+ " ");
+
+       // while (que.size() > 0) System.out.println(que.poll());//не выводится элемент с индексом 0??????????
+
+        //vector collection
+         Vector<Integer> vect = new Vector<Integer>();
+        vect.add(25);
+        vect.get(0);
+
+        // stack - возвращает последний записанный элемент первым
+
+        Stack<Integer> stack = new Stack<Integer>();
+        stack.push(12);
+        stack.push(33);
+        stack.push(89);
+//        System.out.println(stack.pop());//получили посладний элемент
+//        System.out.println(stack.pop());
+//        System.out.println(stack.pop());
+
+        while (stack.size() > 0) System.out.println(stack.pop());
+
+
+        // коллекции пара: ключ/значение. например, ключ это уникальный ID юзера - значение - это его логин и пароль
+
+        Map<Integer, String>  hashMap = new HashMap<Integer, String>();// можно описать 2 параметра аргумента шалона
+        hashMap.put(21, "Test1");
+        hashMap.put(90, "Test2");
+        hashMap.put(99, "Test3");
+        hashMap.put(11, "Test4");
+        System.out.println(hashMap);
+        Set<Integer> s = hashMap.keySet();//создалась новая коллекция в которой только ключи
+
+        System.out.println(hashMap.get(90));// получаем значение по ключу!
+        // чтобы вывести всю коллекцию, необходимо использовать интерфейс Entry
+        for (Map.Entry<Integer,String> entry: hashMap.entrySet()){
+            int key = entry.getKey();
+            entry.getValue();//можем получить значение значения и ключа
+            System.out.println(entry);//entrySet - метод который приводит тип обьекта к типу Entry
         }
+
+        Map<Integer, Boolean> linkedMap = new LinkedHashMap<Integer, Boolean>();
+        linkedMap.put(3,true);
+        System.out.println(linkedMap.containsKey(6));//метод проверяет есть ли такой ключ
+        System.out.println(linkedMap.containsValue(false));//метод проверяет есть ли такое значение
+    //TreeMap
+        Map<String, Integer> treeMap = new TreeMap< String,Integer>();//treeMap по умолчанию сортирует по ключам список, по возрастанию ключа
+        treeMap.put("Test1", -3);
+        treeMap.put("rsdz1", 783);
+        treeMap.put("Tn nbn", 0);
+        System.out.println(treeMap);
+
+        Map< String,Integer> sortedMap = new TreeMap<String, Integer>(String.CASE_INSENSITIVE_ORDER);
+        sortedMap.putAll(treeMap);
 
     }
 }
