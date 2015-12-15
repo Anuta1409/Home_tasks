@@ -22,7 +22,7 @@ public class ExeptionClass {
         boolean isExeptionThtought = false;//флаг - записались данные или нет
         String s;
         try {
-            br = new BufferedReader(new FileReader("D:\\Sampleлдтлдтд.txt"));
+            br = new BufferedReader(new FileReader("D:\\Sample.txt"));
             while ((s = br.readLine()) != null){
                 System.out.println(s);
             }
