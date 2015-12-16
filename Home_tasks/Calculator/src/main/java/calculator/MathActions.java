@@ -1,38 +1,36 @@
 package calculator;
 
 /**
- * Created by Anna on 15.12.2015.
+ * MathOp method implements all math operations which calculator implements
  */
 public class MathActions {
-    int a;
-    double b;
-    double c;
+
     double result;
 
-    public void MathOp(int a, double b, double c) {
-        switch (a) {
+    public void MathOp(int oper, double val1, double val2) {
+        switch (oper) {
             case 1:
-                result = b + c;
+                result = val1 + val2;
                 System.out.println("Result = " + result);
                 break;
             case 2:
-                result = b - c;
+                result = val1 - val2;
                 System.out.println("Result = " + result);
                 break;
             case 3:
-                result = b * c;
+                result = val1 * val2;
                 System.out.println("Result = " + result);
                 break;
             case 4:
-                if (c != 0) {
-                    result = b / c;
+                if (val2 != 0) {
+                    result = val1 / val2;
                     System.out.println("Result = " + result);
                     } else {
-                    System.out.println("Division by 0 is forbidden");
+                    System.out.println("Division by 0 is forbidden!!!");
                 }
                 break;
             default:
-                System.out.println("There is no operation correspond to your request");
+                System.out.println("There is no operation correspond to your request!");
         }
     }
 
